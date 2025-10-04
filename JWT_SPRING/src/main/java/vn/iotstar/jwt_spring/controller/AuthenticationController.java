@@ -56,6 +56,7 @@ public class AuthenticationController {
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginUserModel loginUser) {
         User authenticatedUser = authenticationService.authenticate(loginUser);
         String jwtToken = jwtService.generateToken(authenticatedUser);
+        System.out.println("--- JWT Token: " + jwtToken);
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setToken(jwtToken);
         loginResponse.setExpiresIn(jwtService.getExpirationTime());
